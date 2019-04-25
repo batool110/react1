@@ -853,9 +853,59 @@ const users = [
 // Using above API's, you've to render all the users with their names, emails and their posts.
 // Use `id` as a key with each data rendering.
 
+const arr = [];
+const postarr = [];
+const id =[];
+
+posts.map((value, index) => {
+  return (
+    <React.Fragment key={index}>
+    {
+      postarr.push({
+        body: value.body,
+        title: value.title
+      })
+    }
+  </React.Fragment>
+  )
+})
+
+users.map((value, index) => {
+  return (
+    <React.Fragment key={index}>
+      {
+        id.push(value.id)
+      }
+    </React.Fragment>
+  )
+})
+
+console.log(arr);
+console.log(postarr);
+console.log(id);
+
 function App() {
   return (
+
     <React.Fragment>
+      {
+         
+        // users.map((value, index) => {
+        //   return (
+        //     posts.map((value2 , index2)=>{
+        //       //console.log(value2);
+        //       return(
+        //         <React.Fragment key={index2}>
+        //           {
+        //             postarr.push(value2.name)
+        //           }
+        //           <p>{postarr}</p>
+        //         </React.Fragment>
+        //       )
+        //     })
+        //   )
+        // })
+      }
       <h1>{name}</h1>
 
       <p>---------------------------------</p>
@@ -892,7 +942,15 @@ function App() {
           return (
             <React.Fragment key={index}>
               <p>{value.company}</p>
-              <p>{value.jobs}</p>
+              {
+                value.jobs.map((value2,index2)=>{
+                  return(
+                    <React.Fragment key={index2}>
+                      <li>{value2}</li>
+                    </React.Fragment>
+                  )
+                })
+              }
             </React.Fragment>
           )
         })
@@ -914,33 +972,35 @@ function App() {
         })
       }
 
-<p>----------------------------------------------------------------------------------------------------------------------------------</p>
+      <p>----------------------------------------------------------------------------------------------------------------------------------</p>
       {
-        users.map((value,index) => {
-          return(
+        users.map((value, index) => {
+          return (
             <React.Fragment key={index}>
-            <ul>
-              <li>id: {value.id}}</li>
-              <li>name: {value.name}</li>
-              <li>usreName: {value.username}</li>
-              <li>email: {value.email}</li>
-              <li>address
+              <ul>
+                <li>id: {value.id}}</li>
+                <li>name: {value.name}</li>
+                <li>usreName: {value.username}</li>
+                <li>email: {value.email}</li>
+                <li>address
                 <ul>
-                  <li>street: {value.address.street}</li>
-                  <li>suite: {value.address.suite}</li>
-                  <li>city: {value.address.city}</li>
-                  <li>zipcode: {value.address.zipcode}</li>
-                  <ul>geo
+                    <li>street: {value.address.street}</li>
+                    <li>suite: {value.address.suite}</li>
+                    <li>city: {value.address.city}</li>
+                    <li>zipcode: {value.address.zipcode}</li>
+                    <ul>geo
                     <li>lat: {value.address.geo.lat}</li>
-                    <li>lng: {value.address.geo.lng}</li>
+                      <li>lng: {value.address.geo.lng}</li>
+                    </ul>
                   </ul>
-                </ul>
-              </li>
-            </ul>
+                </li>
+              </ul>
             </React.Fragment>
           )
         })
       }
+
+
 
     </React.Fragment>
   );
